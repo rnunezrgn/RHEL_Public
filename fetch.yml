@@ -6,6 +6,12 @@
     package_name: ''
 
   tasks:
+    - name: Look for the file
+      shell:
+        cmd: ls -l /tmp/wine*
+        
+    - debug: msg="the value of foo.txt is {{lookup('file', '/tmp/wine-mono-7.2.0-1pclos2022.noarch.rpm') }}"
+        
     - name: Fetch RPM to install
       fetch:
         src: /tmp/wine-mono-7.2.0-1pclos2022.noarch.rpm
