@@ -3,6 +3,7 @@
   hosts: all
   gather_facts: true
   become_user: root
+  become: yes
   vars:
     package_name: ''
 
