@@ -11,20 +11,14 @@
       become: true
       copy:
         src: /tmp/wine-mono-7.2.0-1pclos2022.noarch.rpm
-        dest: /home/student1/wine-mono-7.2.0-1pclos2022.noarch.rpm
-        owner: student1
-        group: student1
+        dest: /var/tmp/wine-mono-7.2.0-1pclos2022.noarch.rpm
+        owner: root
+        group: root
         mode: 0644
         force: yes
         remote_src: yes
       delegate_to: ansible-1
 
-    - name: Install RPM package {{package_name}}
-      dnf:  name=/home/student1/wine-mono-7.2.0-1pclos2022.noarch.rpm
+    - name: Install RPM package
+      dnf:  name=/var/tmp/wine-mono-7.2.0-1pclos2022.noarch.rpm
       when: ansible_os_family == "RedHat" and ansible_pkg_mgr == "dnf"
-      tags: [packages, work, txt, atom]
-      
-    #- name: Update RPM
-    #  yum:
-    #    name: "/var/tmp/{{package_name}}"
-    #    state: latest
