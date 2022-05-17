@@ -1,7 +1,8 @@
 ---
 - name: Upgrading RPM module based on location
   hosts: all
-  gather_facts: True
+  gather_facts: true
+  become: true
   vars:
     mysource: ''
     package_name: ''
@@ -9,12 +10,12 @@
   tasks:
     - name: Remote RPM install with yum
       copy:
-        src: "/var/tmp/{{package_name}}"
-        dest: "/var/tmp/{{package_name}}"
+        src: /var/tmp/{{package_name}}
+        dest: /var/tmp/{{package_name}}
         remote_src: true
 
     - name: Install RPM package {{package_name}}
-      dnf:  name="/var/tmp/{{package_name}}"
+      dnf:  name=/var/tmp/{{package_name}}
       when: ansible_os_family == "RedHat" and ansible_pkg_mgr == "dnf"
       tags: [packages, work, txt, atom]
       
