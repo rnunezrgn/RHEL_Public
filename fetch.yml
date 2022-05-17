@@ -11,4 +11,4 @@
       fetch:
         src: "{{package_name_src}}"
         dest: "{{package_name_dest}}"
-      delegate_to: ansible-1
+      delegate_to: node1
