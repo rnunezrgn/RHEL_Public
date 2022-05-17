@@ -16,6 +16,7 @@
         group: student1
         mode: 0644
         remote_src: no
+      delegate_to: ansible-1
         
     - name: Look for the file
       shell:
