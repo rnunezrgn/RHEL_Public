@@ -9,16 +9,16 @@
     package_name: ''
 
   tasks:
-    - name: Look for the file
-      shell:
-        cmd: ls -l /tmp/wine*
-        
     - name: Remote RPM install with yum
       copy:
         src: /tmp/{{package_name}}
         dest: /tmp/{{package_name}}
         owner: student1
         remote_src: true
+        
+    - name: Look for the file
+      shell:
+        cmd: ls -l /tmp/wine*
 
     - name: Install RPM package {{package_name}}
       dnf:  name=/tmp/{{package_name}}
