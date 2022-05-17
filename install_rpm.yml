@@ -15,7 +15,7 @@
         owner: awx
         group: awx
         mode: 0644
-        #remote_src: false
+        remote_src: false
         
     - name: Look for the file
       shell:
