@@ -9,10 +9,11 @@
     package_name: ''
 
   tasks:
-    - name: Remote RPM install with yum
+    - name: Copy RPM to install with dnf
       synchronize:
         src: tmp/{{package_name}}
         dest: /tmp/{{package_name}}
+        rsync_path: /usr/bin/rsync
         #owner: student1
         #remote_src: false
         
