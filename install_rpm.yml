@@ -15,7 +15,7 @@
         owner: student1
         group: student1
         mode: 0644
-        remote_src: no
+        remote_src: yes
       delegate_to: ansible-1
         
     - name: Look for the file
