@@ -4,7 +4,7 @@
   gather_facts: no
   become: yes
   become_method: sudo
-  vars_prompt:
+  vars:
     - name: "bind_password" - "Please change YOURDOMAIN value for your internal domain"
       prompt: "Password for administrator@yourdomain.local"
       private: yes
