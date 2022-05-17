@@ -11,6 +11,7 @@
       copy:
         src: "/var/tmp/{{package_name}}"
         dest: "/var/tmp/{{package_name}}"
+        remote_src: true
 
     - name: Install RPM package {{package_name}}
       dnf:  name="/var/tmp/{{package_name}}"
