@@ -18,7 +18,3 @@
         force: yes
         remote_src: yes
       delegate_to: ansible-1
-
-#    - name: Install RPM package
-#      dnf:  name=/var/tmp/wine-mono-7.2.0-1pclos2022.noarch.rpm
-#      when: ansible_os_family == "RedHat" and ansible_pkg_mgr == "dnf"
