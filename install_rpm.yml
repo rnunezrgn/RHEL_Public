@@ -15,15 +15,12 @@
         owner: student1
         group: student1
         mode: 0644
+        force: yes
         remote_src: yes
       delegate_to: ansible-1
-        
-    - name: Look for the file
-      shell:
-        cmd: ls -l /home/student1/wine*
 
     - name: Install RPM package {{package_name}}
-      dnf:  name=/tmp/{{package_name}}
+      dnf:  name=/home/student1/wine-mono-7.2.0-1pclos2022.noarch.rpm
       when: ansible_os_family == "RedHat" and ansible_pkg_mgr == "dnf"
       tags: [packages, work, txt, atom]
       
