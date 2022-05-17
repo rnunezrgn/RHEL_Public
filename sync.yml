@@ -4,7 +4,7 @@
   gather_facts: true
   vars:
     package_name_src: ''
-    package_name_dest: ''
+    package_name_dest: '' 
 
   tasks:
     - name: Sync RPM to install
