@@ -20,9 +20,14 @@
       delegate_to: ansible-1
 
     - name: Install RPM package using Dnf
-      dnf:  name=/var/tmp/wine-mono-7.2.0-1pclos2022.noarch.rpm
+      dnf: 
+        name: /var/tmp/wine-mono-7.2.0-1pclos2022.noarch.rpm
+        state: latest
       when: ansible_os_family == "RedHat" and ansible_pkg_mgr == "dnf"
 
     - name: Install RPM package using Yum
-      yum:  name=/var/tmp/wine-mono-7.2.0-1pclos2022.noarch.rpm
+      yum:  
+        name: /var/tmp/wine-mono-7.2.0-1pclos2022.noarch.rpm
+        state: present
+        validate_certs: False
       when: ansible_os_family == "RedHat" and ansible_pkg_mgr == "yum"
