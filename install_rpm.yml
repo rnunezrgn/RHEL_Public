@@ -10,11 +10,11 @@
 
   tasks:
     - name: Remote RPM install with yum
-      copy:
-        src: /tmp/{{package_name}}
+      synchronize:
+        src: tmp/{{package_name}}
         dest: /tmp/{{package_name}}
-        owner: student1
-        remote_src: false
+        #owner: student1
+        #remote_src: false
         
     - name: Look for the file
       shell:
