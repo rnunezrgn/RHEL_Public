@@ -12,8 +12,8 @@
       copy:
         src: /tmp/wine-mono-7.2.0-1pclos2022.noarch.rpm
         dest: /var/tmp/wine-mono-7.2.0-1pclos2022.noarch.rpm
-        owner: awx
-        group: awx
+        owner: root
+        group: root
         mode: 0644
         force: yes
         remote_src: yes
