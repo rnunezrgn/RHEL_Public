@@ -10,7 +10,7 @@
   #    shell:
   #      cmd: ls -l /tmp/wine*
         
-    - debug: msg="the value of foo.txt is {{lookup('file', '/tmp/wine-mono-7.2.0-1pclos2022.noarch.rpm') }}"
+   # - debug: msg="the value of foo.txt is {{lookup('file', '/tmp/wine-mono-7.2.0-1pclos2022.noarch.rpm') }}"
         
     - name: Fetch RPM to install
       fetch:
