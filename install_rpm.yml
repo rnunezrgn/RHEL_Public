@@ -2,19 +2,19 @@
 - name: Upgrading RPM module based on location
   hosts: all
   gather_facts: true
-  become: true
   become_user: root
   vars:
-    mysource: ''
     package_name: ''
 
   tasks:
     - name: Copy RPM to install with dnf
-      synchronize:
+      become: true
+      copy:
         src: tmp/{{package_name}}
         dest: /tmp/{{package_name}}
-        rsync_path: /usr/bin/rsync
-        #owner: student1
+        owner: awx
+        group: awx
+        mode: 0644
         #remote_src: false
         
     - name: Look for the file
