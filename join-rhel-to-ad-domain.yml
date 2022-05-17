@@ -5,9 +5,9 @@
   become: yes
   become_method: sudo
   vars:
-    - name: "bind_password" - "Please change YOURDOMAIN value for your internal domain"
-      prompt: "Password for administrator@yourdomain.local"
-      private: yes
+      bind_password: ''
+      domain_name: ''
+      linux_group: ''
 
   tasks:
     - name: Install the required packages
