@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  gather_facts: False
+  gather_facts: True
 
   tasks:
       - name: Check TimeZone 
@@ -11,3 +11,6 @@
       - name: Set timezone when is not America/Los_Angeles
         shell: timedatectl set-timezone America/Los_Angeles
         when: TimeZoneOUT.stdout != 'America/Los_Angeles'
+        register: TimeZoneOut_changed
+      - debug: 
+          msg: "Device {{ansible_hostname}} Timezone has changed to {{TimeZoneOUT_changed.stdout}}"
