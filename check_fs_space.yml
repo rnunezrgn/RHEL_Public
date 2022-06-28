@@ -8,7 +8,7 @@
   tasks:
     - name: Get the right decimal
       set_fact:
-        floating: {{ percentile /100 }}
+        floating: "{{ percentile /100 }}"
     - name: Get List of devices higher than {{ percentile }}%
       set_fact:
         mount_all: "{{ mount_all + [{'host':ansible_host,'dev':item.device,'mount':item.mount,'free':(((item.size_available/1024)/1024)/1024)|round(2,'common'),'total':(((item.size_total/1024)/1024)/1024)|round(2,'common')}] }}"
