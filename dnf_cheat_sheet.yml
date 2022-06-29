@@ -3,13 +3,14 @@
   gather_facts: False
   vars:
      dnf_option: ""
+     my_tag: ""
 
   tasks:
     - name: Update every package on the system
       command: dnf "{{ dnf_option }}"
       when: dnf_option == "update"
       register: my_dnf
-      tags: update
+      tags: "{{ dnf_option }}"
 
     - debug:
         msg: "{{ my_dnf }}"
@@ -18,7 +19,7 @@
       command: dnf "{{ dnf_option }}"
       when: dnf_option == "check-update"
       register: my_dnf
-      tags: check-update
+      tags: "{{ dnf_option }}"
 
     - debug:
         msg: "{{ my_dnf }}"
@@ -27,7 +28,7 @@
       command: dnf "{{ dnf_option }}"
       when: dnf_option == "list"
       register: my_dnf
-      tags: list
+      tags: "{{ dnf_option }}"
 
     - debug:
         msg: "{{ my_dnf }}"
@@ -36,7 +37,7 @@
       command: dnf "{{ dnf_option }}"
       when: dnf_option == "repolist"
       register: my_dnf
-      tags: repolist
+      tags: "{{ dnf_option }}"
 
     - debug:
         msg: "{{ my_dnf }}"
@@ -45,7 +46,7 @@
       command: dnf "{{ dnf_option }}"
       when: dnf_option == "history"
       register: my_dnf
-      tags: history
+      tags: "{{ dnf_option }}"
 
     - debug:
         msg: "{{ my_dnf }}"
