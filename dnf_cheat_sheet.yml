@@ -9,6 +9,7 @@
       command: dnf "{{ dnf_option }}"
       when: dnf_option == "update"
       register: my_dnf
+      tags: update
 
     - debug:
         msg: "{{ my_dnf }}"
@@ -17,6 +18,7 @@
       command: dnf "{{ dnf_option }}"
       when: dnf_option == "check-update"
       register: my_dnf
+      tags: check-update
 
     - debug:
         msg: "{{ my_dnf }}"
@@ -25,6 +27,7 @@
       command: dnf "{{ dnf_option }}"
       when: dnf_option == "list"
       register: my_dnf
+      tags: list
 
     - debug:
         msg: "{{ my_dnf }}"
@@ -33,6 +36,7 @@
       command: dnf "{{ dnf_option }}"
       when: dnf_option == "repolist"
       register: my_dnf
+      tags: repolist
 
     - debug:
         msg: "{{ my_dnf }}"
@@ -41,6 +45,7 @@
       command: dnf "{{ dnf_option }}"
       when: dnf_option == "history"
       register: my_dnf
+      tags: history
 
     - debug:
         msg: "{{ my_dnf }}"
