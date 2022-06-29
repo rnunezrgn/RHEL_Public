@@ -13,7 +13,7 @@
       tags: "{{ dnf_option }}"
 
     - debug:
-        msg: "{{ my_dnf }}"
+        var:  my_dnf.stdout_lines
 
     - name: Check-updates availables for installed packages and dependencies
       command: dnf "{{ dnf_option }}"
@@ -22,7 +22,7 @@
       tags: "{{ dnf_option }}"
 
     - debug:
-        msg: "{{ my_dnf }}"
+        var:  my_dnf.stdout_lines
 
     - name: List availables all packages and available for RPM-based linux distro
       command: dnf "{{ dnf_option }}"
@@ -31,7 +31,7 @@
       tags: "{{ dnf_option }}"
 
     - debug:
-        msg: "{{ my_dnf }}"
+        var:  my_dnf.stdout_lines
         
     - name: Print list of all enabled repositories
       command: dnf "{{ dnf_option }}"
@@ -40,7 +40,7 @@
       tags: "{{ dnf_option }}"
 
     - debug:
-        msg: "{{ my_dnf }}"
+        var:  my_dnf.stdout_lines
         
     - name: Show information of what has happened in the DNF"s past execution
       command: dnf "{{ dnf_option }}"
@@ -49,4 +49,4 @@
       tags: "{{ dnf_option }}"
 
     - debug:
-        msg: "{{ my_dnf }}"
+        var:  my_dnf.stdout_lines
