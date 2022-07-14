@@ -8,8 +8,8 @@
     dnf_state: ''
 
   tasks:
-      - name: Install "{{ dnf_package }}"
-        dnf:
-          name: "{{ dnf_package }}"
-          state: "{{dnf_state }}"
-          update_cache: True
+    - name: Install "{{ dnf_package }}"
+      dnf:
+        name: "{{ dnf_package }}"
+        state: "{{dnf_state }}"
+        update_cache: True
