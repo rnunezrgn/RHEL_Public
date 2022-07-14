@@ -2,6 +2,7 @@
 - name: Install packages using DNF
   hosts: all
   become: True
+  connection: local
   vars:
     dnf_package: ''
     dnf_state: ''
