@@ -1,0 +1,4 @@
+---
+collections:
+  - name: community.general.rhsm_repository
+#ansible-galaxy collection install community.general
