@@ -14,6 +14,7 @@
     - name: Install "unzip" package.
       package: name={{ item }} state=present
       with_items:
+        - python3
         - unzip
 
     - name: Download the awscli bundle.
