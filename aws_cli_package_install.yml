@@ -35,7 +35,7 @@
 #      when: aws_cli_unarchive_installer.changed
 
     - name: Configure AWS.
-      shell: /usr/bin/aws configure set {{ item.key }} {{ item.value }} --profile {{ aws_profile }}
+      shell: /usr/local/bin/aws configure set {{ item.key }} {{ item.value }} --profile {{ aws_profile }}
       no_log: false
       with_dict:
         aws_access_key_id: "{{ aws_access_key }}"
