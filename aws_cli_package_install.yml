@@ -1,9 +1,7 @@
 ---
 - name: Download & Install AWS CLI in Ansible Controller to manage AWS offline instances
   hosts: all
-  connection: local
   gather_facts: false
-  become: true
 
   tasks:
     - name: Install unzip
