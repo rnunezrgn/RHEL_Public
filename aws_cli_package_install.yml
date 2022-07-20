@@ -31,7 +31,7 @@
 #      args:
 #        creates: /usr/bin/aws
 #    - name: Installing awscli
-      raw: ./tmp/aws/install -i /usr/local/aws-cli -b /usr/local/bin
+      raw: /tmp/aws/install -i /usr/local/aws-cli -b /usr/local/bin
 #      when: aws_cli_unarchive_installer.changed
 
     - name: Configure AWS.
