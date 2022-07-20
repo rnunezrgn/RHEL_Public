@@ -18,7 +18,7 @@
         var: curl_result
 
     - name: Unzip AWScliv2 file
-      raw: unzip awscliv2.zip
+      raw: /bin/unzip awscliv2.zip
       register: unzip_result
       delegate_to: localhost
 
