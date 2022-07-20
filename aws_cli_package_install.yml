@@ -6,6 +6,11 @@
   become: true
 
   tasks:
+    - name: Install unzip
+      yum:
+        name: unzip
+        state: latest
+
     - name: Download the AWScliv2 installation file
       raw: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
       register: curl_result
