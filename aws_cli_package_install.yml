@@ -11,10 +11,9 @@
     aws_system_user: ''
 
   tasks:
-    - name: Install package dependencies.
+    - name: Install "unzip" package.
       package: name={{ item }} state=present
       with_items:
-        - python
         - unzip
 
     - name: Download the awscli bundle.
