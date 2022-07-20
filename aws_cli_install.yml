@@ -8,11 +8,6 @@
     ansible_python_interpreter: '/usr/bin/python3'
 
   tasks:
-    - name: Install unzip 
-      raw: yum -y install unzip
-      register: dnf_result
-      delegate_to: localhost
-
     - name: Download the AWScliv2 installation file
       raw: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
       register: curl_result
