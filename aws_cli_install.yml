@@ -4,12 +4,15 @@
   connection: local
   gather_facts: false
   become: true
+  vars:
+    ansible_python_interpreter: '/usr/bin/python3'
 
   tasks:
     - name: Install unzip
       yum:
         name: unzip
         state: latest
+      delegate_to: localhost
 
     - name: Download the AWScliv2 installation file
       raw: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
