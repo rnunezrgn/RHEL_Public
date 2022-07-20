@@ -9,7 +9,7 @@
 
   tasks:
     - name: Install unzip 
-      raw: dnf -y install unzip
+      raw: yum -y install unzip
       register: dnf_result
       delegate_to: localhost
 
