@@ -2,41 +2,43 @@
 - name: Download & Install AWS CLI in Ansible Controller to manage AWS offline instances
   hosts: all
   gather_facts: false
+  vars:
+    aws_profile: 'rnunez'
+    aws_access_key: ''
+    aws_secret_key: ''
+    aws_region: 'us-west-1'
+    aws_format: 'json'
+    aws_system_user: ''
 
   tasks:
-    - name: Install unzip
-      yum:
-        name: unzip
-        state: latest
+    - name: Install package dependencies.
+      package: name={{ item }} state=present
+      with_items:
+        - python
+        - unzip
 
-    - name: Download the AWScliv2 installation file
-      raw: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-      register: curl_result
+    - name: Download the awscli bundle.
+      get_url: url=https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip dest=/tmp/awscli-bundle.zip
+      register: aws_cli_download_bundle
 
-    - name: Display curl results
-      debug:
-        var: curl_result
+    - name: Unarchive the installer.
+      unarchive: src=/tmp/awscli-bundle.zip dest=/tmp copy=no creates=/tmp/awscli-bundle
+      when: aws_cli_download_bundle.changed
+      register: aws_cli_unarchive_installer
 
-    - name: Unzip AWScliv2 file
-      raw: /bin/unzip awscliv2.zip
-      register: unzip_result
+    - name: Install awscli package.
+      shell: python /tmp/awscli-bundle/install -i /usr/local/aws -b /usr/bin/aws
+      args:
+        creates: /usr/bin/aws
+      when: aws_cli_unarchive_installer.changed
 
-    - name: Display unzip results
-      debug:
-        var: unzip_result
-
-    - name: Installing awscli
-      raw: ./aws/install -i /usr/local/aws-cli -b /usr/local/bin
-      register: install_result
-
-    - name: Display install results
-      debug:
-        var: install_result 
-    
-    - name: Check aws version
-      raw: /usr/local/bin/aws --version
-      register: version_result
-
-    - name: Display version results
-      debug:
-        var: version_result
+    - name: Configure AWS.
+      shell: aws configure set {{ item.key }} {{ item.value }} --profile {{ aws_profile }}
+      no_log: True
+      with_dict:
+        aws_access_key_id: "{{ aws_access_key }}"
+        aws_secret_access_key: "{{ aws_secret_key }}"
+        region: "{{ aws_region }}"
+        format: "{{ aws_format }}"
+      become_user: "{{ aws_system_user }}"
+      changed_when: false
