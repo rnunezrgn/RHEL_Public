@@ -3,7 +3,7 @@
   connection: local
   gather_facts: false
   vars:
-    url_name: "https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token"
+    url_name: "https://console.redhat.com/ansible/automation-hub/token"
     user_token: ""
     ansible_user: ""
     ansible_password: ""
