@@ -50,7 +50,7 @@
             incremental: "daily"
         register: ec2_snap_info
 
-      - name: Printing Snapshot Information {{ ec2_snap_info[0].snapshot_id }}
+      - name: Printing Snapshot Information {{ ec2_snap_info.snapshot_id }}
         ansible.builtin.debug:
           msg:  "{{ ec2_snap_info }}"
 
