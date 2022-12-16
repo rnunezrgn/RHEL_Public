@@ -4,8 +4,8 @@
   gather_facts: false
   vars:
     snapshot_id: ''
-    region: ''
-    source_region: ''
+    region: us-east-1 # Region to copy snapshots
+    source_region: us-west-2 # The source region the Snapshot should be copied from
 
   tasks:
       - name: Record the Date & time
@@ -16,6 +16,7 @@
 
       - name: Gather information about a particular snapshot using ID
         amazon.aws.ec2_snapshot_info:
+          region: "{{ region }}"
 #          filters:
 #            snapshot-id: snap-00112233
         register: ec2_snap_info
