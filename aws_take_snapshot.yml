@@ -2,6 +2,8 @@
 - name: Clone AWS instances
   hosts: all
   gather_facts: false
+  vars:
+    default_count: '3'
 
   pre_tasks:
     - name: Default to 3 snapshots if COUNT is not defined.
