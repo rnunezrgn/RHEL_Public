@@ -35,7 +35,7 @@
         amazon.aws.ec2_snapshot:
           region: "{{ region }}"
           instance_id: "{{ ec2_instance_info.instances[0].instance_id }}"
-          device_name: "{{ ec2_instance_info.instances[0].device_name }}"
+          device_name: "/dev/sda1"
           description: "AWSbackup snapshot taken on {{ ansible_date_time.date }} at {{ ansible_date_time.time }} for Instance ID: {{ ec2_instance_info.instances[0].instance_id }}"
           snapshot_tags:
             incremental: "daily"
