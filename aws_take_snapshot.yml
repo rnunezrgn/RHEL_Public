@@ -53,7 +53,7 @@
         ansible.builtin.debug:
           msg:  "{{ ec2_snap_info }}"
 
-      - name: Copy Snapshot from {{ source_region }} to DR region {{ region }} and wait until available
+      - name: Copy Snapshot from AWS {{ source_region }} to AWS DR region {{ to_region }} and wait until available
         community.aws.ec2_snapshot_copy:
           source_region: "{{ region }}"
           region: "{{ to_region }}"
