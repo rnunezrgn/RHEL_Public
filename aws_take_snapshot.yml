@@ -1,0 +1,39 @@
+---
+- name: Clone AWS instances
+  hosts: all
+  gather_facts: false
+
+  pre_tasks:
+    - name: Default to 3 snapshots if COUNT is not defined.
+      set_fact:
+        COUNT: "{{ default_count }}"
+      when: COUNT is not defined
+
+    - name: Verify incremental type (daily, weekly, monthly)
+      fail:
+        msg: "INCREMENTAL is not defined.  Allowed values are daily, weekly, or monthly.  Exiting."
+      when: INCREMENTAL is not defined or INCREMENTAL != 'daily' and INCREMENTAL != 'weekly' and INCREMENTAL != 'monthly'
+  
+  tasks:
+    - name: Get instances id with tag {{servername}} in {{region}}
+      amazon.aws.ec2_instance_info:
+       region: "{{region}}"
+       filters:
+         "tag:Name": "{{servername}}"
+         instance-state-name: [ "running"]
+         "tag:Contact": "{{my_email_address}}"
+
+      register: instance_info
+    - name: Getting instance ID to create AWS-Snapshot
+      ansible.builtin.debug:
+         msg: "{{instance_info.instances[0].instance_id}}"
+      when: instance_info.instances[0].instance_id is defined
+
+#    - name: Snapshot the instance.
+#      amazon.aws.ec2_snapshot:
+#        region: "{{ region }}"
+#        instance_id: "{{ instance_info.instances[0].instance_id }}"
+#        device_name: "{{ item.root_device_name }}"
+#        description: "awsbackup snapshot taken on {{ ansible_date_time.date }} at {{ ansible_date_time.time }} for Instance ID: {{ instance_info.instances[0].instance_id }}"
+#        snapshot_tags:
+#          incremental: "daily"
