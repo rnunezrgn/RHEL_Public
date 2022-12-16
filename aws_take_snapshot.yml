@@ -5,7 +5,9 @@
   vars:
     default_count: '3'
     INCREMENTAL: 'daily'
-    to_region: us-east-1 # Destination region to copy snapshots
+    region: ''
+    to_region: 'us-east-1' # Destination region to copy snapshots
+    source_region: 'us-west-2' # The source region the Snapshot should be copied from
 
   pre_tasks:
     - name: Default to 3 snapshots if COUNT is not defined.
@@ -38,7 +40,7 @@
         ansible.builtin.debug:
           msg:  "{{ ec2_instance_info.instances[0].public_dns_name }} and Instance ID is {{ ec2_instance_info.instances[0].instance_id }}"
 
-      - name:  "AWSbackup snapshot taken on {{ ansible_date_time.date }} for Instance ID: {{ ec2_instance_info.instances[0].instance_id }}"
+      - name:  "AWS Snapshot taken for Instance ID {{ ec2_instance_info.instances[0].instance_id }}"
         amazon.aws.ec2_snapshot:
           region: "{{ region }}"
           instance_id: "{{ ec2_instance_info.instances[0].instance_id }}"
