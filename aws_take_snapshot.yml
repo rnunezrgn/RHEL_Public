@@ -31,14 +31,14 @@
         ansible.builtin.debug:
           msg:  "{{ ec2_instance_info.instances[0].public_dns_name }} and Instance ID is {{ ec2_instance_info.instances[0].instance_id }}"
 
-#    - name: Snapshot the instance.
-#      amazon.aws.ec2_snapshot:
-#        region: "{{ region }}"
-#        instance_id: "{{ ec2_instance_info.instances[0].instance_id }}"
-#        device_name: "{{ item.root_device_name }}"
-#        description: "AWSbackup snapshot taken on {{ ansible_date_time.date }} at {{ ansible_date_time.time }} for Instance ID: {{ ec2_instance_info.instances[0].instance_id }}"
-#        snapshot_tags:
-#          incremental: "daily"
+    - name: Snapshot the instance.
+      amazon.aws.ec2_snapshot:
+        region: "{{ region }}"
+        instance_id: "{{ ec2_instance_info.instances[0].instance_id }}"
+        device_name: "{{ ec2_instance_info.instances[0].device_name }}"
+        description: "AWSbackup snapshot taken on {{ ansible_date_time.date }} at {{ ansible_date_time.time }} for Instance ID: {{ ec2_instance_info.instances[0].instance_id }}"
+        snapshot_tags:
+          incremental: "daily"
 
 #    - name: Get instances id with tag {{servername}} in {{region}}
 #      amazon.aws.ec2_instance_info:
