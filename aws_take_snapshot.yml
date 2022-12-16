@@ -4,6 +4,7 @@
   gather_facts: false
   vars:
     default_count: '3'
+    INCREMENTAL: 'daily'
 
   pre_tasks:
     - name: Default to 3 snapshots if COUNT is not defined.
@@ -26,7 +27,7 @@
          "tag:Contact": "{{my_email_address}}"
 
       register: instance_info
-    - name: Getting instance ID to create AWS-Snapshot
+    - name: Getting instance ID to create AWS-Snapshot.
       ansible.builtin.debug:
          msg: "{{instance_info.instances[0].instance_id}}"
       when: instance_info.instances[0].instance_id is defined
