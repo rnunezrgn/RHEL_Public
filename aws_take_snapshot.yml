@@ -18,6 +18,12 @@
       when: INCREMENTAL is not defined or INCREMENTAL != 'daily' and INCREMENTAL != 'weekly' and INCREMENTAL != 'monthly'
   
   tasks:
+      - name: Record the post_install_time
+        ansible.builtin.command:
+          cmd: "date '+%D:%H:%M:%S'"
+        delegate_to: 127.0.0.1
+        register: ansible_date_time
+
       - name: "Get instances in {{region}}"
         amazon.aws.ec2_instance_info:
           region: "{{ region }}"
