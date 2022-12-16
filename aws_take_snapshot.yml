@@ -18,26 +18,26 @@
       when: INCREMENTAL is not defined or INCREMENTAL != 'daily' and INCREMENTAL != 'weekly' and INCREMENTAL != 'monthly'
   
   tasks:
-      - name: Record the post_install_time
+      - name: Record the Date & time
         ansible.builtin.command:
           cmd: "date '+%D:%H:%M:%S'"
         delegate_to: 127.0.0.1
         register: ansible_date_time
 
-      - name: "Get instances in {{region}}"
+      - name: "Get instances in AWS {{region}}"
         amazon.aws.ec2_instance_info:
           region: "{{ region }}"
         register: ec2_instance_info
 
-      - name: Printing ALL Instance INFO
+      - name: Printing ALL Instance Information
         ansible.builtin.debug:
           msg:  "{{ ec2_instance_info }}"
 
-      - name: Printing the public dns name
+      - name: Printing the public dns name and instance ID 
         ansible.builtin.debug:
           msg:  "{{ ec2_instance_info.instances[0].public_dns_name }} and Instance ID is {{ ec2_instance_info.instances[0].instance_id }}"
 
-      - name:  "AWSbackup snapshot taken on {{ ansible_date_time }} for Instance ID: {{ ec2_instance_info.instances[0].instance_id }}"
+      - name:  "AWSbackup snapshot taken on {{ ansible_date_time.date }} for Instance ID: {{ ec2_instance_info.instances[0].instance_id }}"
         amazon.aws.ec2_snapshot:
           region: "{{ region }}"
           instance_id: "{{ ec2_instance_info.instances[0].instance_id }}"
@@ -45,6 +45,12 @@
 #          description: "AWSbackup snapshot of {{ ec2_instance_info.instances[0].instance_id }}"
           snapshot_tags:
             incremental: "daily"
+        register: snap_info
+
+      - name: Printing Snapshot Information
+        ansible.builtin.debug:
+          msg:  "{{ snap_info }}"
+
 
 #    - name: Get instances id with tag {{servername}} in {{region}}
 #      amazon.aws.ec2_instance_info:
