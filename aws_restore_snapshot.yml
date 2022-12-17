@@ -1,7 +1,7 @@
 ---
 - name: Restore Snapshot AWS instance
   hosts: localhost
-  gather_facts: false
+  gather_facts: true
   vars:
     region: ''
 
@@ -19,7 +19,7 @@
 
       - name: Printing ALL Instance Information
         ansible.builtin.debug:
-          msg:  "{{ ec2_intance_info }}"
+          msg:  "{{ ec2_instance_info }}"
 
       - name: "Get instances in AWS {{region}}"
         amazon.aws.ec2_vol_info:
