@@ -13,15 +13,15 @@
     gcp_region: "us-west1" # us-west1 or us-west2
     my_gcp_machine_type: "n1-standard-1" # n1-standard-1, n1-standard-2, n1-standard-4
     gcp_state: "present"
+    gcp_zone: "us-west1-b"
 
   tasks:
     - name: create a disk mapped from RHEL image
-      #google.cloud.gcp_compute_disk:
       gcp_compute_disk:
         name: "{{ disk_name }}"
         size_gb: "{{ size_gb }}"
         source_image: "{{ gcp_source_image }}"
-        zone: "{{ gcp_region }}"
+        zone: "{{ gcp_zone }}"
         project: "{{ gcp_project }}"
         auth_kind: "{{ gcp_cred_kind }}"
         state: "{{ gcp_state }}"
@@ -63,7 +63,7 @@
           - name: External NAT
             nat_ip: "{{ address }}"
             type: ONE_TO_ONE_NAT
-        zone:  "{{ gcp_region }}"
+        zone:  "{{ gcp_zonen }}"
         project: "{{ gcp_project }}"
         auth_kind: "{{ gcp_cred_kind }}"
         state: "{{ gcp_state }}"
