@@ -3,7 +3,7 @@
   hosts: localhost
   vars:
     gcp_project: "rhpds-345620"
-    gcp_cred_kind: "service_account"
+    gcp_cred_kind: "serviceaccount"
     disk_name: ""
     size_gb: ""
     gcp_net_instance_name: ""
