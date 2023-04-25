@@ -1,5 +1,5 @@
 ---
-- name: Create a GCP disak
+- name: Create a GCP disk
   hosts: localhost
   connection: local
   vars:
