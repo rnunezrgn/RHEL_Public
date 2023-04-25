@@ -16,7 +16,8 @@
 
   tasks:
     - name: create a disk mapped from RHEL image
-      google.cloud.gcp_compute_disk:
+      #google.cloud.gcp_compute_disk:
+      gcp_compute_disk:
         name: "{{ disk_name }}"
         size_gb: "{{ size_gb }}"
         source_image: "{{ gcp_source_image }}"
