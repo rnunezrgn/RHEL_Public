@@ -52,7 +52,7 @@
     - name: creating the instance
       gcp_compute_instance:
         name: "{{ gcp_instance_name }}"
-        gcp_machine_type: "{{ my_gcp_machine_type }}"
+        machine_type: "{{ my_gcp_machine_type }}"
         disks:
         - auto_delete: "true"
           boot: "true"
