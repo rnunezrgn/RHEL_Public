@@ -1,5 +1,5 @@
 ---
-- name: Create a GCP instance
+- name: Create a GCP RHEL instance
   hosts: localhost
   vars:
     gcp_project: "rhpds-345620"
@@ -16,7 +16,7 @@
     gcp_zone: "us-west1-b"
 
   tasks:
-    - name: create a disk mapped from RHEL image
+    - name: create a GCP disk mapped from RHEL image
       gcp_compute_disk:
         name: "{{ disk_name }}"
         size_gb: "{{ size_gb }}"
@@ -27,11 +27,11 @@
         state: "{{ gcp_state }}"
       register: disk
 
-    - name: printing disk info
+    - name: printing GCP disk info
       debug:
         var: disk
 
-    - name: creating the vpc...
+    - name: creating the GCP VPC...
       gcp_compute_network:
         name: "{{ gcp_net_instance_name }}"
         auto_create_subnetworks: "true"
@@ -40,7 +40,7 @@
         state: "{{ gcp_state }}"
       register: network
     
-    - name: creating IPv4 public IP address
+    - name: creating GCP IPv4 public IP address
       gcp_compute_address:
         name: "{{ gcp_IPv4_instance_name }}"
         region: "{{ gcp_region }}"
@@ -49,7 +49,7 @@
         state: "{{ gcp_state }}"
       register: address
 
-    - name: creating the instance
+    - name: creating the GCP RHEL instance
       gcp_compute_instance:
         name: "{{ gcp_instance_name }}"
         machine_type: "{{ my_gcp_machine_type }}"
@@ -68,6 +68,6 @@
         auth_kind: "{{ gcp_cred_kind }}"
         state: "{{ gcp_state }}"
 
-    - name: Show compute instance details 
+    - name: Show compute GCP instance details 
       debug:
         msg: "You instance ip address is {{ address.address }}"
