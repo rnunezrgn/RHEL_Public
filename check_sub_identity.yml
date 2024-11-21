@@ -23,5 +23,5 @@
     - name: Loop stdout_lines
       ansible.builtin.debug:
         msg: "{{ item }}"
-      when: "'systemidentity' in item"
+      when: "'system identity' in item"
       loop: "{{ results.stdout_lines }}"
