@@ -9,4 +9,4 @@
 
     - name: Show variable
       ansible.builtin.debug:
-        var: results.stdout_lines.system identity
+        var: results.stdout_lines
