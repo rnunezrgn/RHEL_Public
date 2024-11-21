@@ -7,7 +7,10 @@
       ansible.builtin.command: subscription-manager identity
       register: results
 
+    - set_fact:
+        newvar: '{{ results | regex_replace("\s","") }}'
+        
     - name: Show variable
       ansible.builtin.debug:
-        var: results.stdout_lines | to_nice_json
-        #var: results
+        #var: results.stdout_lines | to_nice_json
+        var: newvar
