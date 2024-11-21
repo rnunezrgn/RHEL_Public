@@ -1,0 +1,12 @@
+---
+- name: Check subscription-manager
+  hosts: all
+
+  tasks:
+    - name: Run identity
+      ansible.builtin.command: subscription-manager identity
+      register: results
+
+    - name: Show variable
+      ansible.builtin.debug:
+        var: results
