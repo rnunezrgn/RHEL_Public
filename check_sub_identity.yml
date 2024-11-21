@@ -19,3 +19,9 @@
       ansible.builtin.debug:
         #var: results.stdout_lines | to_nice_json
         var: newvar.stdout_lines  | to_nice_json
+
+    - name: Loop stdout_lines
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      when: "'systemidentity' in item"
+      loop: "{{ results.stdout_lines }}"
