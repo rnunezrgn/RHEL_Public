@@ -22,6 +22,6 @@
 
     - name: Loop stdout_lines
       ansible.builtin.debug:
-        msg: "{{ item | to_yaml }}"
+        msg: "{{ item | to_nice_json }}"
       when: "'system identity' in item"
       loop: "{{ results.stdout_lines }}"
