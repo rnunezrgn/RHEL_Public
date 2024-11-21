@@ -18,4 +18,4 @@
     - name: Show org
       ansible.builtin.debug:
         #var: results.stdout_lines | to_nice_json
-        var: newvar.stdout_lines.orgname
+        var: newvar.stdout_lines  | to_nice_json
