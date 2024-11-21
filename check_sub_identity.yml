@@ -4,10 +4,10 @@
 
   tasks:
     - name: Run identity
-      ansible.builtin.command: subscription-manager identity | grep identity
+      ansible.builtin.command: subscription-manager identity
       register: results
 
     - name: Show variable
       ansible.builtin.debug:
-        #var: results.stdout_lines
-        var: results
+        var: results.stdout_lines | to_nice_json
+        #var: results
